@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 %define repo github.com/gohugoio/hugo
 Name:           hugo
-Version:        0.89.2
-Release:        4%{?dist}
+Version:        0.89.3
+Release:        1%{?dist}
 Summary:        A Fast and Flexible Static Site Generator
 
 Group:          Applications/System
@@ -46,6 +46,8 @@ install -Dp %{_builddir}/man/* -t %{buildroot}%{_mandir}/man1
 %{_mandir}/man1/*.1*
 
 %changelog
+* Tue Nov 16 2021 Martin Vlcek <martin@dontfreakout.eu> 0.89.3-1
+- bug-fix release
 * Wed Nov 10 2021 Martin Vlcek <martin@dontfreakout.eu> 0.89.2-1
 - Fix path resolution in hugo new
 - deps update
