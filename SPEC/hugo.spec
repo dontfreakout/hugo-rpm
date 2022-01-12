@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 %define repo github.com/gohugoio/hugo
 Name:           hugo
-Version:        0.91.2
+Version:        0.92.0
 Release:        1%{?dist}
 Summary:        A Fast and Flexible Static Site Generator
 
@@ -25,9 +25,14 @@ cd hugo
 %build
 export GOPATH="%{_builddir}"
 export PATH=$PATH:"%{_builddir}"/bin
-cd %{_builddir}/src/github.com/gohugoio/hugo
 export GO111MODULE=on 
-go get github.com/magefile/mage
+cd %{_builddir}/src
+git clone https://github.com/magefile/mage
+cd mage
+go run bootstrap.go
+cd %{_builddir}/src/github.com/gohugoio/hugo
+rm go.sum
+go mod tidy
 mage hugo
 mage install
 cd %{_builddir}
@@ -46,6 +51,8 @@ install -Dp %{_builddir}/man/* -t %{buildroot}%{_mandir}/man1
 %{_mandir}/man1/*.1*
 
 %changelog
+* Thu Jan 11 2022 Martin Vlcek <martin@dontfreakout.eu> 0.92.0-1
+- See https://github.com/gohugoio/hugo/releases/tag/v0.92.0
 * Thu Dec 23 2021 Martin Vlcek <martin@dontfreakout.eu> 0.91.2-1
 - Bug-fix release
 - See details at https://github.com/gohugoio/hugo/releases/tag/v0.91.2
@@ -57,7 +64,7 @@ install -Dp %{_builddir}/man/* -t %{buildroot}%{_mandir}/man1
 * Fri Dec 10 2021 Martin Vlcek <martin@dontfreakout.eu> 0.90.1-1
 - Bug-fix release
 - Details at https://github.com/gohugoio/hugo/releases/tag/v0.90.1
-* Wed DEC 08 2021 Martin Vlcek <martin@dontfreakout.eu> 0.90.0-1
+* Wed Dec 08 2021 Martin Vlcek <martin@dontfreakout.eu> 0.90.0-1
 - Details at https://github.com/gohugoio/hugo/releases/tag/v0.90.0
 * Wed Nov 17 2021 Martin Vlcek <martin@dontfreakout.eu> 0.89.4-1
 - Fix content dir resolution when main project is a Hugo Module
