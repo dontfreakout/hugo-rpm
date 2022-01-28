@@ -1,7 +1,7 @@
 %define debug_package %{nil}
 %define repo github.com/gohugoio/hugo
 Name:           hugo
-Version:        0.92.0
+Version:        0.92.1
 Release:        1%{?dist}
 Summary:        A Fast and Flexible Static Site Generator
 
@@ -51,6 +51,8 @@ install -Dp %{_builddir}/man/* -t %{buildroot}%{_mandir}/man1
 %{_mandir}/man1/*.1*
 
 %changelog
+* Fri Jan 28 2022 Martin Vlcek <martin@dontfreakout.eu> 0.92.1-1
+- Bug-fix release, see https://github.com/gohugoio/hugo/releases/tag/v0.92.1
 * Thu Jan 11 2022 Martin Vlcek <martin@dontfreakout.eu> 0.92.0-1
 - See https://github.com/gohugoio/hugo/releases/tag/v0.92.0
 * Thu Dec 23 2021 Martin Vlcek <martin@dontfreakout.eu> 0.91.2-1
